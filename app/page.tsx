@@ -1,65 +1,155 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+// importa hooks
+import { useState } from "react";
+
+// importa metadata
+// import { Metadata } from "next";
+
+// importa o CardProduto
+import CardProduto from "./components/CardProduto";
+
+// importa icon
+import { ShoppingCart } from "lucide-react";
+
+// define a metadata
+// export const metadata: Metadata = {
+//   title: "Cardápio",
+// };
+
+// mock de dados placeholder
+export const produtos = [
+  // Hambúrgueres
+  {
+    id: 1,
+    nome: "X-Burger",
+    categoria: "Hambúrguer",
+    preco: 15,
+    descricao: "Hambúrguer com queijo, alface e tomate",
+    imagem: "/assets/images/hamburguer.png",
+  },
+  {
+    id: 2,
+    nome: "X-Bacon",
+    categoria: "Hambúrguer",
+    preco: 18,
+    descricao: "Hambúrguer com bacon, queijo e molho especial",
+    imagem: "/assets/images/hamburguer.png",
+  },
+  // Sanduíches
+  {
+    id: 3,
+    nome: "Misto Quente",
+    categoria: "Sanduíche",
+    preco: 8,
+    descricao: "Presunto e queijo derretido",
+    imagem: "/assets/images/sanduiche.png",
+  },
+  {
+    id: 4,
+    nome: "Frango Crispy",
+    categoria: "Sanduíche",
+    preco: 16,
+    descricao: "Frango empanado crocante com maionese",
+    imagem: "/assets/images/sanduiche.png",
+  },
+  // Bebidas
+  {
+    id: 5,
+    nome: "Refrigerante Lata",
+    categoria: "Bebida",
+    preco: 5,
+    descricao: "Coca-Cola, Fanta ou Guaraná",
+    imagem: "/assets/images/cola.png",
+  },
+  {
+    id: 6,
+    nome: "Suco Natural",
+    categoria: "Bebida",
+    preco: 7,
+    descricao: "Suco de laranja ou maracujá",
+    imagem: "/assets/images/suco.png",
+  },
+  // Sobremesas
+  {
+    id: 7,
+    nome: "Milkshake Chocolate",
+    categoria: "Sobremesa",
+    preco: 12,
+    descricao: "Milkshake cremoso de chocolate",
+    imagem: "/assets/images/milkshake.png",
+  },
+  {
+    id: 8,
+    nome: "Brownie",
+    categoria: "Sobremesa",
+    preco: 9,
+    descricao: "Brownie de chocolate com pedaços de noz",
+    imagem: "/assets/images/brownie.png",
+  },
+];
+
+export default function Cardapio() {
+  // estado para filtro, por padrao é "Tudo"
+  const [filtro, setFiltro] = useState<string>("Tudo");
+  // estado para controlar a quantidade de produtos no carrinho
+  const [quantidade, setQuantidade] = useState<number>(0);
+  // estado para controlar o modal de carrinho
+  const [abrirModal, setAbrirModal] = useState<boolean>(false);
+
+  // função para filtrar produtos por meio dos botões
+  const produtosFiltrados =
+    filtro === "Tudo"
+      ? produtos
+      : produtos.filter(
+          (produtos) =>
+            produtos.categoria.toLowerCase() === filtro.toLowerCase()
+        );
+
+  // categorias
+  const categorias = ["Tudo", "Hambúrguer", "Sanduíche", "Bebida", "Sobremesa"];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="px-4 py-6 relative">
+      {/* titulo */}
+      <h1 className="mx-2 mb-4 text-lg md:text-3xl lg:text-4xl font-bold md:text-center">
+        Se liga no nosso <span className="text-green-600">Cardápio</span>!
+      </h1>
+      {/* carrinho */}
+      <div className="absolute top-4 right-4">
+        <ShoppingCart size={40} className="text-white" />
+        <span className="absolute bottom-0 left-0 px-2 rounded-full bg-red-600 text-white">
+          {quantidade}
+        </span>
+      </div>
+      {/* botoes de filtros */}
+      <div className="flex justify-center flex-wrap gap-2 mb-4">
+        {categorias.map((categoria) => {
+          return (
+            <button
+              key={categoria}
+              className={`btn ${filtro === categoria ? "bg-red-600" : ""}`}
+              onClick={() => setFiltro(categoria)}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              {categoria}
+            </button>
+          );
+        })}
+      </div>
+      {/* grid de produtos */}
+      <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {/* map de produtos */}
+        {produtosFiltrados.map((produto) => {
+          return (
+            <div
+              key={produto.id}
+              className="transition-all duration-300 ease-in-out transform opacity-0 scale-95 animate-fadeIn"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              <CardProduto {...produto} />
+            </div>
+          );
+        })}
+      </div>
+    </main>
   );
 }
