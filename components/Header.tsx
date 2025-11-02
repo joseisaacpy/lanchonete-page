@@ -19,7 +19,7 @@ export default function Header() {
           loading="eager"
           className="rounded-full border-4 border-white"
         />
-        <h1 className="text-white text-2xl font-bold">Lanchonete Lorem</h1>
+        <h1 className="text-white text-2xl font-bold">Nome da lanchonete</h1>
       </div>
     </header>
   );
