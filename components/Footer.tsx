@@ -1,0 +1,9 @@
+export default function Footer() {
+  return (
+    <footer className="w-full flex items-center justify-center bg-green-600 p-4 px-8">
+      <p className="text-white text-center font-bold text-lg">
+        Lanchonete Fullstack 2023
+      </p>
+    </footer>
+  );
+}
