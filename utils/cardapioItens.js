@@ -53,10 +53,10 @@ const cardapioItens = [
   // Sobremesas
   {
     id: 7,
-    nome: "Milkshake Chocolate",
+    nome: "Milkshake de Morango",
     categoria: "Sobremesa",
     preco: 12,
-    descricao: "Milkshake cremoso de chocolate",
+    descricao: "Milkshake cremoso de morango",
     imagem: "/assets/images/milkshake.png",
   },
   {
