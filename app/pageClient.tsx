@@ -35,7 +35,7 @@ export default function Home() {
     <main className="px-4 py-6 relative">
       {/* titulo */}
       <h1 className="mx-2 mb-4 text-lg md:text-3xl lg:text-4xl font-bold md:text-center">
-        Se liga no nosso <span className="text-green-600">Cardápio</span>!
+        Se liga no nosso <span className="text-red-600">Cardápio</span>!
       </h1>
       {/* carrinho */}
       <div className="hidden absolute top-4 right-4">
