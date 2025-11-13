@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  nome     String
+  produtos Produto[]
+
+  @@map("categorias")
+}
+
+model Produto {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  nome        String
+  descricao   String
+  preco       Float
+  imagemUrl   String
+  categoriaId String?    @db.ObjectId
+  categoria   Categoria? @relation(fields: [categoriaId], references: [id])
+
+  @@map("produtos")
+}
