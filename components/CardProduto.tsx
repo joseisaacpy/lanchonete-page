@@ -42,7 +42,11 @@ export default function CardProduto({
         <p className="text-green-600 text-lg md:text-xl font-bold">
           R${preco.toFixed(2)}
         </p>
-        <button aria-label={`Comprar ${nome}`} className="btn bg-green-600">
+        <button
+          aria-label={`Comprar ${nome}`}
+          className="btn bg-green-600"
+          onClick={() => alert("Em desenvimento...")}
+        >
           Comprar
         </button>
       </div>
