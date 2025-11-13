@@ -1,15 +1,26 @@
 // Arquivo para rotas POST e GET, que não precisam de ID
-
 // importa o prisma
 import { prisma } from "@/lib/prisma";
+// importa o NextResponse
 import { NextResponse } from "next/server";
 
 // GET - pega todos os produtos
 export async function GET() {
   try {
-    const produtos = await prisma.produto.findMany();
+    // pega todos os produtos incluindo a categoria
+    const produtos = await prisma.produto.findMany({
+      include: {
+        categoria: true,
+      },
+    });
+    // se a quantidade de produtos for 0, retorna um array vazio
+    if (produtos.length == 0) {
+      return NextResponse.json([]);
+    }
+    // retorna os produtos
     return NextResponse.json(produtos);
   } catch (error) {
+    // se der erro, retorna um erro
     console.error(error);
     return NextResponse.json(
       { error: "Ocorreu um erro ao buscar os produtos" },
@@ -17,3 +28,4 @@ export async function GET() {
     );
   }
 }
+
