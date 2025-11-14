@@ -29,3 +29,25 @@ export async function GET() {
   }
 }
 
+// POST - cria um produto
+export async function POST(req: Request) {
+  try {
+    // pega os dados vindo da requisição
+    const data = await req.json();
+    // cria um novo produto com os dados de data
+    const novoProduto = await prisma.produto.create({
+      data,
+    });
+    return NextResponse.json({
+      message: "Produto criado com sucesso",
+      produto: novoProduto,
+      status: 201,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Ocorreu um erro ao criar o produto" },
+      { status: 500 }
+    );
+  }
+}
