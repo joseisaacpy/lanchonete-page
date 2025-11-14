@@ -11,6 +11,9 @@ import CardProduto from "../components/CardProduto";
 // importa icon
 import { ShoppingCart } from "lucide-react";
 
+// importa header
+import Header from "@/components/Header";
+
 export default function Home() {
   // estado para filtro, por padrao é "Tudo"
   const [filtro, setFiltro] = useState<string>("Tudo");
@@ -32,9 +35,10 @@ export default function Home() {
   const categorias = ["Tudo", "Hambúrguer", "Sanduíche", "Bebida", "Sobremesa"];
 
   return (
-    <main className="px-4 py-6 relative">
+    <main className="px-4 relative">
+      <Header />
       {/* titulo */}
-      <h1 className="mx-2 mb-4 text-lg md:text-3xl lg:text-4xl font-bold md:text-center">
+      <h1 className="mx-2 py-4 text-lg md:text-3xl lg:text-4xl font-bold md:text-center">
         Se liga no nosso <span className="text-red-600">Cardápio</span>!
       </h1>
       {/* carrinho */}

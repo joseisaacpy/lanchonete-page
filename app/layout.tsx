@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 
 export const metadata: Metadata = {
   title: "Lanchonete Page",
@@ -21,7 +20,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={` antialiased`}>
-        <Header />
         {children}
         {/* <Footer /> */}
       </body>
