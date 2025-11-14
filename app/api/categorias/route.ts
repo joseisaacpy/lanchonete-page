@@ -21,3 +21,26 @@ export async function GET() {
     );
   }
 }
+
+// POST - criar uma categoria
+export async function POST(req: Request) {
+  try {
+    // recebe os dados pela requisição
+    const data = await req.json();
+    // cria a nova categoria com base nos dados
+    const novaCategoria = await prisma.categoria.create({ data });
+    return NextResponse.json(
+      {
+        message: "Categoria criado com sucesso",
+        categoria: novaCategoria,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Erro ao criar categoria" },
+      { status: 500 }
+    );
+  }
+}
