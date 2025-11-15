@@ -35,7 +35,7 @@ export default function Home() {
   const categorias = ["Tudo", "Hambúrguer", "Sanduíche", "Bebida", "Sobremesa"];
 
   return (
-    <main className="px-4 relative">
+    <section className="px-4 relative">
       <Header />
       {/* titulo */}
       <h1 className="mx-2 py-4 text-lg md:text-3xl lg:text-4xl font-bold md:text-center">
@@ -81,6 +81,6 @@ export default function Home() {
           );
         })}
       </div>
-    </main>
+    </section>
   );
 }
