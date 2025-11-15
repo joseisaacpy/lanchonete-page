@@ -1,9 +1,18 @@
-import type { Metadata } from "next";
-
+// css
 import "./globals.css";
 
+// fontes
+import { Poppins } from "next/font/google";
+const poppins = Poppins({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+});
+
+// componentes
 import Footer from "../components/Footer";
 
+// metadata
+import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Lanchonete Page",
   description: "Nome da lanchonete — A melhor pizza e hambúrguer da região.",
@@ -19,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`antialiased min-h-screen flex flex-col`}>
+      <body
+        className={`${poppins.className} antialiased min-h-screen flex flex-col`}
+      >
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
