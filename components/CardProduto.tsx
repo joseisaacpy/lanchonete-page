@@ -1,14 +1,8 @@
 // importa image
 import Image from "next/image";
 
-type Produto = {
-  id: number;
-  nome: string;
-  descricao: string;
-  categoria: string;
-  preco: number;
-  imagem: string;
-};
+// type do produto
+import Produto from "@/app/types/produto";
 
 export default function CardProduto({
   id,
@@ -39,12 +33,12 @@ export default function CardProduto({
         <span className="text-sm text-white/40">{categoria}</span>
         <h2 className="font-bold text-lg md:text-xl">{nome}</h2>
         <p className="text-gray-300 text-sm md:text-base grow">{descricao}</p>
-        <p className="text-green-600 text-lg md:text-xl font-bold">
+        <p className="text-green-default text-lg md:text-xl font-bold">
           R${preco.toFixed(2)}
         </p>
         <button
           aria-label={`Comprar ${nome}`}
-          className="btn bg-green-600"
+          className="btn bg-green-default"
           onClick={() => alert("Em desenvimento...")}
         >
           Comprar
