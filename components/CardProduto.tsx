@@ -8,9 +8,9 @@ export default function CardProduto({
   id,
   nome,
   descricao,
-  categoria,
   preco,
-  imagem,
+  imagemUrl,
+  categoria,
 }: Produto) {
   return (
     <div
@@ -20,7 +20,7 @@ export default function CardProduto({
       {/* div da imagem */}
       <div className="relative w-full h-40 md:h-48 lg:h-52">
         <Image
-          src={imagem}
+          src={imagemUrl || "/assets/images/logo-placeholder.svg"}
           alt={nome}
           className="object-cover"
           fill
@@ -30,7 +30,7 @@ export default function CardProduto({
       </div>
       {/* conteúdo */}
       <div className="flex flex-col grow p-4 gap-2">
-        <span className="text-sm text-white/40">{categoria}</span>
+        <span className="text-sm text-white/40">{categoria.nome}</span>
         <h2 className="font-bold text-lg md:text-xl">{nome}</h2>
         <p className="text-gray-300 text-sm md:text-base grow">{descricao}</p>
         <p className="text-green-default text-lg md:text-xl font-bold">
