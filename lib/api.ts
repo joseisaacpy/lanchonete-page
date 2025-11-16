@@ -1,0 +1,29 @@
+// importa types
+import Produto from "@/app/types/produto";
+import Categoria from "@/app/types/categoria";
+
+// função para buscar produtos
+export async function getProdutos(): Promise<Produto[]> {
+  try {
+    const response = await fetch("http://localhost:3000/api/produtos", {
+      cache: "no-cache", // evita o cache
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    return []; // retorna um array vazio
+  }
+}
+
+// função para buscar categorias
+export async function getCategorias(): Promise<Categoria[]> {
+  try {
+    const response = await fetch("http://localhost:3000/api/categorias", {
+      cache: "no-cache", // evita o cache
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    return []; // retorna um array vazio
+  }
+}
