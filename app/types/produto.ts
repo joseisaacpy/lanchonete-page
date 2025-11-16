@@ -2,9 +2,13 @@ type Produto = {
   id: string;
   nome: string;
   descricao: string;
-  categoria: string;
   preco: number;
-  imagem: string;
+  imagemUrl?: string;
+  categoriaId: string;
+  categoria: {
+    id: string;
+    nome: string;
+  };
 };
 
 export default Produto;
