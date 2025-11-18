@@ -8,6 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  /* cores principais */
   --color-red-default: oklch(57.7% 0.245 27.325);
   --color-green-default: oklch(62.7% 0.194 149.214);
 
