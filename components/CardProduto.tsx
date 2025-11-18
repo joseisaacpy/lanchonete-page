@@ -20,7 +20,7 @@ export default function CardProduto({
       {/* div da imagem */}
       <div className="relative w-full h-40 md:h-48 lg:h-52">
         <Image
-          src={imagemUrl || "/assets/images/logo-placeholder.svg"}
+          src={imagemUrl || "/assets/images/sem-image.svg"}
           alt={nome}
           className="object-cover"
           fill
