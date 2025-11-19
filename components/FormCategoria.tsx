@@ -21,6 +21,25 @@ export default function FormCategoria() {
         setLoading(false);
         return;
       }
+      // se tiver nome. faz o POST
+      const response = await fetch("/api/categorias", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nome }),
+      });
+      // se der erro
+      const data = await response.json();
+      if (data.error) {
+        toast.error(data.error); // mostra o erro
+        setLoading(false); // fecha o loader
+        return;
+      }
+      // se der certo
+      toast.success("Categoria cadastrada com sucesso"); // mostra o sucesso
+      setNome(""); // limpa o nome
+      setLoading(false); // fecha o loader
     } catch (error) {
       console.log(error);
       toast.error("Erro ao cadastrar a categoria");
