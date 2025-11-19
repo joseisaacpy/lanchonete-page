@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import horarioFuncionamento from "@/utils/horarioFuncionamento";
 
 export default function Header() {
+  const lojaAberta = horarioFuncionamento();
   return (
     <header className="relative w-full h-[300px] flex flex-col items-center justify-center">
       {/* Imagem de fundo */}
@@ -20,6 +24,14 @@ export default function Header() {
           className="rounded-full border-4 border-white"
         />
         <h1 className="text-white text-2xl font-bold">Lanchonete Fullstack</h1>
+        <span
+          title="A lanchonete abre às 18h e fecha às 23h"
+          className={`${
+            lojaAberta ? "bg-green-default" : "bg-red-default"
+          } px-4 py-2 rounded-full text-white text-sm font-bold`}
+        >
+          {lojaAberta ? "Aberta agora" : "Fechada"}
+        </span>
       </div>
     </header>
   );
