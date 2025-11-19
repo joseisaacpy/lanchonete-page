@@ -111,6 +111,14 @@ body {
 .input-form {
   @apply border border-white rounded-md p-2;
 }
+/* class para form */
+.form-default {
+  @apply flex flex-col gap-4;
+}
+/* class para campo no fomr */
+.campo-form {
+  @apply flex flex-col gap-2;
+}
 
 /* animação de aparição */
 @keyframes fadeIn {
