@@ -7,7 +7,7 @@ import CardCategoria from "@/components/CardCategoria";
 // função para buscar categorias
 async function getCategorias(): Promise<Categoria[]> {
   try {
-    const response = await fetch("http://localhost:3000/api/categorias", {
+    const response = await fetch("/api/categorias", {
       cache: "no-cache", // evita o cache
     });
     return response.json();

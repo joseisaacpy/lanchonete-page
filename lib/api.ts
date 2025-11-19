@@ -5,7 +5,7 @@ import Categoria from "@/app/types/categoria";
 // função para buscar produtos
 export async function getProdutos(): Promise<Produto[]> {
   try {
-    const response = await fetch("http://localhost:3000/api/produtos", {
+    const response = await fetch("/api/produtos", {
       cache: "no-cache", // evita o cache
     });
     return response.json();
@@ -18,7 +18,7 @@ export async function getProdutos(): Promise<Produto[]> {
 // função para buscar categorias
 export async function getCategorias(): Promise<Categoria[]> {
   try {
-    const response = await fetch("http://localhost:3000/api/categorias", {
+    const response = await fetch("/api/categorias", {
       cache: "no-cache", // evita o cache
     });
     return response.json();
