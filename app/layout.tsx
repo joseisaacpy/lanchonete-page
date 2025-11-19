@@ -8,8 +8,8 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-// componentes
-import Footer from "../components/Footer";
+// components
+import LayoutClient from "./LayoutClient";
 
 // metadata
 import type { Metadata } from "next";
@@ -32,7 +32,7 @@ export default function RootLayout({
         className={`${poppins.className} antialiased min-h-screen flex flex-col`}
       >
         <main className="flex-1">{children}</main>
-        <Footer />
+        <LayoutClient />
       </body>
     </html>
   );
