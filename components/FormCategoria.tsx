@@ -49,8 +49,8 @@ export default function FormCategoria() {
     <section className="section-container">
       <h1 className="h1-title">Cadastro de categoria</h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
+      <form onSubmit={handleSubmit} className="form-default">
+        <div className="campo-form">
           <Label>Nome:</Label>
           <Input
             value={nome}
