@@ -2,7 +2,7 @@
 import { Trash2, Edit } from "lucide-react";
 
 // tpye da categoria
-import Categoria from "@/app/types/categoria";
+import Categoria from "@/types/categoria";
 
 export default function CardCategoria({ id, nome }: Categoria) {
   return (

@@ -6,8 +6,8 @@ import CardProduto from "../components/CardProduto";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 // types
-import Produto from "@/app/types/produto";
-import Categoria from "@/app/types/categoria";
+import Produto from "@/types/produto";
+import Categoria from "@/types/categoria";
 // funções de consumo da API
 import { getProdutos, getCategorias } from "@/lib/api";
 

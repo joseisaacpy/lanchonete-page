@@ -19,8 +19,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 // types
-import Produto from "@/app/types/produto";
-import Categoria from "@/app/types/categoria";
+import Produto from "@/types/produto";
+import Categoria from "@/types/categoria";
 
 export default function FormProduto() {
   //   estado para as categorias

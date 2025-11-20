@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-
-// importa o CardCategoria
 import CardCategoria from "@/components/CardCategoria";
 
 export default async function Categorias() {

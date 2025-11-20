@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 // type do produto
-import Produto from "@/app/types/produto";
+import Produto from "@/types/produto";
 
 export default function CardProduto({
   id,
@@ -36,11 +36,7 @@ export default function CardProduto({
         <p className="text-green-default text-lg md:text-xl font-bold">
           R${preco.toFixed(2)}
         </p>
-        <button
-          aria-label={`Comprar ${nome}`}
-          className="btn bg-green-default"
-          onClick={() => alert("Em desenvimento...")}
-        >
+        <button aria-label={`Comprar ${nome}`} className="btn bg-green-default">
           Comprar
         </button>
       </div>
