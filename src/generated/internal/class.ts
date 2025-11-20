@@ -11,7 +11,7 @@
  * Please import the `PrismaClient` class from the `client.ts` file instead.
  */
 
-import * as runtime from "@prisma/client/runtime/library"
+import * as runtime from "@prisma/client/runtime/binary"
 import type * as Prisma from "./prismaNamespace"
 
 
@@ -27,17 +27,13 @@ const config: runtime.GetPrismaClientConfig = {
       "fromEnvVar": null
     },
     "config": {
-      "engineType": "library"
+      "engineType": "binary"
     },
     "binaryTargets": [
       {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x",
         "native": true
-      },
-      {
-        "fromEnvVar": null,
-        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -60,8 +56,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider      = \"prisma-client\"\n  output        = \"../src/generated\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Categoria {\n  id       String    @id @default(auto()) @map(\"_id\") @db.ObjectId\n  nome     String\n  produtos Produto[]\n\n  @@map(\"categorias\")\n}\n\nmodel Produto {\n  id String @id @default(auto()) @map(\"_id\") @db.ObjectId\n\n  nome        String\n  descricao   String\n  preco       Float\n  imagemUrl   String\n  categoriaId String    @db.ObjectId\n  categoria   Categoria @relation(fields: [categoriaId], references: [id])\n\n  @@map(\"produtos\")\n}\n",
-  "inlineSchemaHash": "0e209e7138bfe12c4440169cdb5755b170d3721ab781fde4d1b47f11c849db28",
+  "inlineSchema": "generator client {\n  provider   = \"prisma-client\"\n  engineType = \"binary\"\n  output     = \"../src/generated\"\n  // binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Categoria {\n  id       String    @id @default(auto()) @map(\"_id\") @db.ObjectId\n  nome     String\n  produtos Produto[]\n\n  @@map(\"categorias\")\n}\n\nmodel Produto {\n  id String @id @default(auto()) @map(\"_id\") @db.ObjectId\n\n  nome        String\n  descricao   String\n  preco       Float\n  imagemUrl   String\n  categoriaId String    @db.ObjectId\n  categoria   Categoria @relation(fields: [categoriaId], references: [id])\n\n  @@map(\"produtos\")\n}\n",
+  "inlineSchemaHash": "6e9c166b75ce15a25f55446baa4d95ff572add88c0ac0597d85c7ce63c61ed1c",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
@@ -125,7 +121,7 @@ export interface PrismaClient<
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
-  $on<V extends LogOpts>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+  $on<V extends (LogOpts | 'beforeExit')>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : V extends 'beforeExit' ? () => runtime.Types.Utils.JsPromise<void> : Prisma.LogEvent) => void): PrismaClient;
 
   /**
    * Connect with the database
