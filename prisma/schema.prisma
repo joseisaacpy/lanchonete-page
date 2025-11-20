@@ -24,8 +24,8 @@ model Produto {
   descricao   String
   preco       Float
   imagemUrl   String
-  categoriaId String?    @db.ObjectId
-  categoria   Categoria? @relation(fields: [categoriaId], references: [id])
+  categoriaId String    @db.ObjectId
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
 
   @@map("produtos")
 }
