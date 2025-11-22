@@ -1,10 +1,10 @@
 type Produto = {
   id: number;
   nome: string;
-  descricao: string;
+  descricao: string | null;
   preco: number;
-  imagemUrl?: string;
-  categoriaId: string;
+  imagemUrl: string | null;
+  categoriaId: number;
   categoria: {
     id: number;
     nome: string;

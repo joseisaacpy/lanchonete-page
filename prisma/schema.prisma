@@ -16,13 +16,13 @@ model Categoria {
 }
 
 model Produto {
-  id          Int        @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   nome        String
   descricao   String?
   imagemUrl   String?
   preco       Float
   categoriaId Int
-  categoria   Categoria? @relation(fields: [categoriaId], references: [id])
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
 
   @@map("produtos")
 }

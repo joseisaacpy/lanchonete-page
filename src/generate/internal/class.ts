@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.0.0",
   "engineVersion": "0c19ccc313cf9911a90d99d2ac2eb0280c76c513",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generate\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Categoria {\n  id       Int       @id @default(autoincrement())\n  nome     String\n  produtos Produto[]\n\n  @@map(\"categorias\")\n}\n\nmodel Produto {\n  id          Int        @id @default(autoincrement())\n  nome        String\n  descricao   String?\n  imagemUrl   String?\n  preco       Float\n  categoriaId Int\n  categoria   Categoria? @relation(fields: [categoriaId], references: [id])\n\n  @@map(\"produtos\")\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generate\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Categoria {\n  id       Int       @id @default(autoincrement())\n  nome     String\n  produtos Produto[]\n\n  @@map(\"categorias\")\n}\n\nmodel Produto {\n  id          Int       @id @default(autoincrement())\n  nome        String\n  descricao   String?\n  imagemUrl   String?\n  preco       Float\n  categoriaId Int\n  categoria   Categoria @relation(fields: [categoriaId], references: [id])\n\n  @@map(\"produtos\")\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},

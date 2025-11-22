@@ -232,7 +232,7 @@ export type ProdutoWhereInput = {
   imagemUrl?: Prisma.StringNullableFilter<"Produto"> | string | null
   preco?: Prisma.FloatFilter<"Produto"> | number
   categoriaId?: Prisma.IntFilter<"Produto"> | number
-  categoria?: Prisma.XOR<Prisma.CategoriaNullableScalarRelationFilter, Prisma.CategoriaWhereInput> | null
+  categoria?: Prisma.XOR<Prisma.CategoriaScalarRelationFilter, Prisma.CategoriaWhereInput>
 }
 
 export type ProdutoOrderByWithRelationInput = {
@@ -255,7 +255,7 @@ export type ProdutoWhereUniqueInput = Prisma.AtLeast<{
   imagemUrl?: Prisma.StringNullableFilter<"Produto"> | string | null
   preco?: Prisma.FloatFilter<"Produto"> | number
   categoriaId?: Prisma.IntFilter<"Produto"> | number
-  categoria?: Prisma.XOR<Prisma.CategoriaNullableScalarRelationFilter, Prisma.CategoriaWhereInput> | null
+  categoria?: Prisma.XOR<Prisma.CategoriaScalarRelationFilter, Prisma.CategoriaWhereInput>
 }, "id">
 
 export type ProdutoOrderByWithAggregationInput = {
@@ -289,7 +289,7 @@ export type ProdutoCreateInput = {
   descricao?: string | null
   imagemUrl?: string | null
   preco: number
-  categoria?: Prisma.CategoriaCreateNestedOneWithoutProdutosInput
+  categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput
 }
 
 export type ProdutoUncheckedCreateInput = {
@@ -306,7 +306,7 @@ export type ProdutoUpdateInput = {
   descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagemUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
-  categoria?: Prisma.CategoriaUpdateOneWithoutProdutosNestedInput
+  categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput
 }
 
 export type ProdutoUncheckedUpdateInput = {
@@ -539,7 +539,7 @@ export type ProdutoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   imagemUrl?: boolean
   preco?: boolean
   categoriaId?: boolean
-  categoria?: boolean | Prisma.Produto$categoriaArgs<ExtArgs>
+  categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["produto"]>
 
 export type ProdutoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -549,7 +549,7 @@ export type ProdutoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   imagemUrl?: boolean
   preco?: boolean
   categoriaId?: boolean
-  categoria?: boolean | Prisma.Produto$categoriaArgs<ExtArgs>
+  categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["produto"]>
 
 export type ProdutoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -559,7 +559,7 @@ export type ProdutoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   imagemUrl?: boolean
   preco?: boolean
   categoriaId?: boolean
-  categoria?: boolean | Prisma.Produto$categoriaArgs<ExtArgs>
+  categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["produto"]>
 
 export type ProdutoSelectScalar = {
@@ -573,19 +573,19 @@ export type ProdutoSelectScalar = {
 
 export type ProdutoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "descricao" | "imagemUrl" | "preco" | "categoriaId", ExtArgs["result"]["produto"]>
 export type ProdutoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  categoria?: boolean | Prisma.Produto$categoriaArgs<ExtArgs>
+  categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
 }
 export type ProdutoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  categoria?: boolean | Prisma.Produto$categoriaArgs<ExtArgs>
+  categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
 }
 export type ProdutoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  categoria?: boolean | Prisma.Produto$categoriaArgs<ExtArgs>
+  categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>
 }
 
 export type $ProdutoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Produto"
   objects: {
-    categoria: Prisma.$CategoriaPayload<ExtArgs> | null
+    categoria: Prisma.$CategoriaPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -988,7 +988,7 @@ readonly fields: ProdutoFieldRefs;
  */
 export interface Prisma__ProdutoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  categoria<T extends Prisma.Produto$categoriaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Produto$categoriaArgs<ExtArgs>>): Prisma.Prisma__CategoriaClient<runtime.Types.Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  categoria<T extends Prisma.CategoriaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoriaDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoriaClient<runtime.Types.Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1417,25 +1417,6 @@ export type ProdutoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Produtos to delete.
    */
   limit?: number
-}
-
-/**
- * Produto.categoria
- */
-export type Produto$categoriaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Categoria
-   */
-  select?: Prisma.CategoriaSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Categoria
-   */
-  omit?: Prisma.CategoriaOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CategoriaInclude<ExtArgs> | null
-  where?: Prisma.CategoriaWhereInput
 }
 
 /**
