@@ -47,7 +47,7 @@ export default function FormProduto() {
     descricao: "",
     preco: 0,
     imagemUrl: "",
-    categoriaId: "",
+    categoriaId: 0,
   });
   return (
     <section className="section-container">
@@ -67,7 +67,7 @@ export default function FormProduto() {
           <Input
             type="text"
             id="descricao"
-            value={form.descricao}
+            value={form.descricao ?? ""}
             onChange={(e) => setForm({ ...form, descricao: e.target.value })}
           />
         </div>
@@ -88,14 +88,18 @@ export default function FormProduto() {
           <Label htmlFor="imagemUrl">Imagem (URL)</Label>
           <Input
             id="imagemUrl"
-            value={form.imagemUrl}
+            value={form.imagemUrl ?? ""}
             onChange={(e) => setForm({ ...form, imagemUrl: e.target.value })}
           />
         </div>
 
         <div className="campo-form">
           <Label htmlFor="categoriaId">Categoria</Label>
-          <Select>
+          <Select
+            onValueChange={(value) =>
+              setForm({ ...form, categoriaId: Number(value) })
+            }
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Categoria" />
             </SelectTrigger>
@@ -108,7 +112,7 @@ export default function FormProduto() {
                   </SelectItem>
                 ) : (
                   categorias.map((categoria) => (
-                    <SelectItem key={categoria.id} value={categoria.id}>
+                    <SelectItem key={categoria.id} value={String(categoria.id)}>
                       {categoria.nome}
                     </SelectItem>
                   ))
