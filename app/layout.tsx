@@ -9,10 +9,10 @@ const poppins = Poppins({
 });
 
 // components
-import LayoutClient from "./LayoutClient";
 
 // metadata
 import type { Metadata } from "next";
+import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Lanchonete Page",
   description: "Nome da lanchonete — A melhor pizza e hambúrguer da região.",
@@ -32,7 +32,7 @@ export default function RootLayout({
         className={`${poppins.className} antialiased min-h-screen flex flex-col`}
       >
         <main className="flex-1">{children}</main>
-        <LayoutClient />
+        <Footer />
       </body>
     </html>
   );

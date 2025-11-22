@@ -2,7 +2,7 @@
 // importa hooks
 import { useState, useEffect } from "react";
 // importa componentes
-import CardProduto from "../components/CardProduto";
+import CardProduto from "../../../components/CardProduto";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 // types
