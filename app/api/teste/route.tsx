@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const ping = await prisma.categoria.count();
-    return NextResponse.json({ ok: true, ping });
+    const teste = await prisma.categoria.findMany();
+    if (teste.length == 0) {
+      return NextResponse.json([]);
+    } else {
+      return NextResponse.json(teste);
+    }
   } catch (err: any) {
     console.error(err);
     return NextResponse.json(

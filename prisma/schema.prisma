@@ -1,17 +1,14 @@
 generator client {
-  provider   = "prisma-client"
-  engineType = "binary"
-  output     = "../src/generated"
-  // binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  provider = "prisma-client"
+  output   = "../src/generate"
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
 }
 
 model Categoria {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  id       Int       @id @default(autoincrement())
   nome     String
   produtos Produto[]
 
@@ -19,14 +16,13 @@ model Categoria {
 }
 
 model Produto {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
+  id          Int        @id @default(autoincrement())
   nome        String
-  descricao   String
+  descricao   String?
+  imagemUrl   String?
   preco       Float
-  imagemUrl   String
-  categoriaId String    @db.ObjectId
-  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId Int
+  categoria   Categoria? @relation(fields: [categoriaId], references: [id])
 
   @@map("produtos")
 }

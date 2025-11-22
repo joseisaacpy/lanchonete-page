@@ -1,5 +1,5 @@
 type Categoria = {
-  id: string;
+  id: number;
   nome: string;
 };
 

@@ -16,7 +16,7 @@ export default async function Produtos() {
       <p>Quantidade de produtos: {produtos.length}</p>
       <p>
         Deseja adicionar uma novo produto?
-        <Link className="ml-1 text-red-default underline" href="/produto/novo">
+        <Link className="ml-1 text-red-default underline" href="/produtos/novo">
           Clique aqui
         </Link>
       </p>

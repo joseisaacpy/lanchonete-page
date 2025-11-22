@@ -1,7 +1,6 @@
 // Arquivo para rotas POST e GET, que não precisam de ID
-// importa o prisma
-import { prisma } from "@/lib/prisma";
-// importa o NextResponse
+
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 // GET - pega todos os produtos
