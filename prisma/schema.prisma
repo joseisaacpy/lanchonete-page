@@ -26,3 +26,12 @@ model Produto {
 
   @@map("produtos")
 }
+
+model User {
+  id    Int    @id @default(autoincrement())
+  nome  String
+  email String @unique
+  tipo  String @default("USER") // pode ser user ou admin
+
+  @@map("usuarios")
+}

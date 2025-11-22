@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.0.0",
   "engineVersion": "0c19ccc313cf9911a90d99d2ac2eb0280c76c513",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generate\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Categoria {\n  id       Int       @id @default(autoincrement())\n  nome     String\n  produtos Produto[]\n\n  @@map(\"categorias\")\n}\n\nmodel Produto {\n  id          Int       @id @default(autoincrement())\n  nome        String\n  descricao   String?\n  imagemUrl   String?\n  preco       Float\n  categoriaId Int\n  categoria   Categoria @relation(fields: [categoriaId], references: [id])\n\n  @@map(\"produtos\")\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generate\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Categoria {\n  id       Int       @id @default(autoincrement())\n  nome     String\n  produtos Produto[]\n\n  @@map(\"categorias\")\n}\n\nmodel Produto {\n  id          Int       @id @default(autoincrement())\n  nome        String\n  descricao   String?\n  imagemUrl   String?\n  preco       Float\n  categoriaId Int\n  categoria   Categoria @relation(fields: [categoriaId], references: [id])\n\n  @@map(\"produtos\")\n}\n\nmodel User {\n  id    Int    @id @default(autoincrement())\n  nome  String\n  email String @unique\n  tipo  String @default(\"USER\") // pode ser user ou admin\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Categoria\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"produtos\",\"kind\":\"object\",\"type\":\"Produto\",\"relationName\":\"CategoriaToProduto\"}],\"dbName\":\"categorias\"},\"Produto\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"descricao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imagemUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"preco\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"categoriaId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"categoria\",\"kind\":\"object\",\"type\":\"Categoria\",\"relationName\":\"CategoriaToProduto\"}],\"dbName\":\"produtos\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Categoria\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"produtos\",\"kind\":\"object\",\"type\":\"Produto\",\"relationName\":\"CategoriaToProduto\"}],\"dbName\":\"categorias\"},\"Produto\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"descricao\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imagemUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"preco\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"categoriaId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"categoria\",\"kind\":\"object\",\"type\":\"Categoria\",\"relationName\":\"CategoriaToProduto\"}],\"dbName\":\"produtos\"},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -193,6 +193,16 @@ export interface PrismaClient<
     * ```
     */
   get produto(): Prisma.ProdutoDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
