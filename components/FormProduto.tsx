@@ -5,6 +5,7 @@ import { getCategorias } from "@/lib/api";
 // hooks
 import { useState, useEffect } from "react";
 // components
+import Loader from "./Loader";
 import { toast } from "sonner";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
@@ -25,6 +26,8 @@ import Categoria from "@/types/categoria";
 export default function FormProduto() {
   //   estado para as categorias
   const [categorias, setCategorias] = useState<Categoria[]>([]);
+  // estado para laoder
+  const [loader, setLoader] = useState<boolean>(false);
   //   useEffect para carregar as categorias
   useEffect(() => {
     (async () => {
@@ -36,9 +39,35 @@ export default function FormProduto() {
     try {
       // previne o reload da pagina
       e.preventDefault();
+      // inicia o loader
+      setLoader(true);
+      if (!form.nome || !form.preco || !form.categoriaId) {
+        toast.error("Preencha todos os campos obrigatórios");
+        setLoader(false);
+        return;
+      }
+      await fetch("/api/produtos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      toast.success("Produto cadastrado com sucesso");
+      // limpa o form ao submeter
+      setForm({
+        nome: "",
+        descricao: "",
+        preco: 0,
+        imagemUrl: "",
+        categoriaId: 0,
+      });
     } catch (error) {
       toast.error("Ocorreu um erro ao criar o produto");
       console.error(error);
+    } finally {
+      // fecha o loader
+      setLoader(false);
     }
   };
   //   estado para o formulário
@@ -52,9 +81,10 @@ export default function FormProduto() {
   return (
     <section className="section-container">
       <h1 className="h1-title">Cadastrar produto</h1>
+      <span className="text-red-default">* Campos obrigatórios</span>
       <form onSubmit={handleSubmit} className="form-default">
         <div className="campo-form">
-          <Label htmlFor="nome">Nome:</Label>
+          <Label htmlFor="nome">Nome:*</Label>
           <Input
             type="text"
             id="nome"
@@ -73,7 +103,7 @@ export default function FormProduto() {
         </div>
 
         <div className="campo-form">
-          <Label htmlFor="preco">Preço</Label>
+          <Label htmlFor="preco">Preço:*</Label>
           <Input
             type="number"
             id="preco"
@@ -94,8 +124,9 @@ export default function FormProduto() {
         </div>
 
         <div className="campo-form">
-          <Label htmlFor="categoriaId">Categoria</Label>
+          <Label htmlFor="categoriaId">Categoria:*</Label>
           <Select
+            value={String(form.categoriaId)}
             onValueChange={(value) =>
               setForm({ ...form, categoriaId: Number(value) })
             }
