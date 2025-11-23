@@ -73,7 +73,7 @@ export default function Home() {
         )}
       </div>
       {/* grid de produtos */}
-      <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid pb-2 gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {produtosFiltrados.length === 0 && (
           <h2 className="text-center text-lg md:text-2xl font-bold">{`Nenhum produto encontrado para a categoria ${filtro.toLowerCase()}`}</h2>
         )}
