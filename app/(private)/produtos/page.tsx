@@ -2,6 +2,13 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import CardProduto from "@/components/CardProduto";
+import { Metadata } from "next";
+
+export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "Produtos",
+};
 
 export default async function Produtos() {
   // faz a requisição para buscar as produtos
