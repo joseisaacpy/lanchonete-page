@@ -1,10 +1,11 @@
 "use client";
-// importas
+// imports
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function FormCategoria() {
   const [nome, setNome] = useState<string>("");
@@ -48,6 +49,12 @@ export default function FormCategoria() {
   return (
     <section className="section-container">
       <h1 className="h1-title">Cadastro de categoria</h1>
+      <p>
+        Deseja visualizar as categoria?
+        <Link className="ml-1 text-red-default underline" href="/categorias">
+          Clique aqui
+        </Link>
+      </p>
 
       <form onSubmit={handleSubmit} className="form-default">
         <div className="campo-form">
