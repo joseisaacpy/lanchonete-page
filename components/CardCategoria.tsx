@@ -3,12 +3,20 @@
 import { Trash2, Edit } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-
 import Categoria from "@/types/categoria";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function CardCategoria({ id, nome }: Categoria) {
   const router = useRouter();
-
+  // função para deletar uma categoria
   const handleDelete = async () => {
     try {
       await fetch(`/api/categorias/${id}`, {
@@ -21,20 +29,21 @@ export default function CardCategoria({ id, nome }: Categoria) {
       toast.error("Ocorreu um erro ao deletar a categoria");
     }
   };
+
   return (
-    <div key={id} className="bg-gray-200 rounded-md p-4 text-black">
-      <h2 className="font-bold">{nome}</h2>
-      <footer>
-        {/* botões */}
-        <div className="flex flex-row gap-2">
-          <button onClick={handleDelete} className="btn bg-red-default">
-            <Trash2 />
-          </button>
-          <button className="btn bg-red-default">
-            <Edit />
-          </button>
-        </div>
-      </footer>
-    </div>
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>{nome}</CardTitle>
+        <CardDescription>x produtos cadastrados</CardDescription>
+      </CardHeader>
+      <CardFooter className="flex flex-col gap-2">
+        <Button onClick={handleDelete} className="w-full">
+          <Trash2 />
+        </Button>
+        <Button className="w-full">
+          <Edit />
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
