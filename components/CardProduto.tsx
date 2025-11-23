@@ -1,7 +1,5 @@
-// importa image
 import Image from "next/image";
 
-// type do produto
 import Produto from "@/types/produto";
 
 export default function CardProduto({

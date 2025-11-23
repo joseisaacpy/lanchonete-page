@@ -1,10 +1,9 @@
 "use client";
 
-// funções de consumo da API
 import { getCategorias } from "@/lib/api";
-// hooks
+
 import { useState, useEffect } from "react";
-// components
+
 import Loader from "./Loader";
 import { toast } from "sonner";
 import { Label } from "./ui/label";

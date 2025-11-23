@@ -1,14 +1,13 @@
 "use client";
-// importa hooks
 import { useState, useEffect } from "react";
-// importa componentes
-import CardProduto from "../../../components/CardProduto";
+
+import CardProduto from "@/components/CardProduto";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
-// types
+
 import Produto from "@/types/produto";
 import Categoria from "@/types/categoria";
-// funções de consumo da API
+
 import { getProdutos, getCategorias } from "@/lib/api";
 
 export default function Home() {
