@@ -13,7 +13,7 @@ export default function CardProduto({
   return (
     <div
       key={id}
-      className="flex flex-col rounded-2xl shadow-md overflow-hidden h-full hover:scale-95 transition-all ease-in-out duration-300"
+      className="flex flex-col rounded-2xl border-2 shadow-md overflow-hidden h-full hover:scale-95 transition-all ease-in-out duration-300"
     >
       {/* div da imagem */}
       <div className="relative w-full h-40 md:h-48 lg:h-52">
