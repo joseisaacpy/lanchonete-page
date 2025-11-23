@@ -38,6 +38,10 @@ export default function FormProduto() {
     try {
       // previne o reload da pagina
       e.preventDefault();
+      if (categorias.length === 0) {
+        toast.error("Cadastre uma categoria antes de cadastrar um produto");
+        return;
+      }
       // inicia o loader
       setLoader(true);
       if (!form.nome || !form.preco || !form.categoriaId) {
@@ -131,14 +135,14 @@ export default function FormProduto() {
             }
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Categoria" />
+              <SelectValue placeholder="Selecione uma categoria" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Categorias</SelectLabel>
                 {categorias.length === 0 ? (
-                  <SelectItem disabled value="carregando">
-                    Carregando...
+                  <SelectItem disabled value="0">
+                    Nenhuma categoria cadastrada
                   </SelectItem>
                 ) : (
                   categorias.map((categoria) => (
@@ -151,8 +155,16 @@ export default function FormProduto() {
             </SelectContent>
           </Select>
         </div>
-
-        <Button type="submit" variant={"outline"}>
+        {categorias.length === 0 && (
+          <p className="text-red-default">
+            Cadastre uma categoria antes de cadastrar um produto
+          </p>
+        )}
+        <Button
+          type="submit"
+          variant={"outline"}
+          disabled={categorias.length === 0}
+        >
           Cadastrar
         </Button>
       </form>
