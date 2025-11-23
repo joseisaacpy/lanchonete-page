@@ -15,6 +15,10 @@ export default function Home() {
   const [categorias, setCategorias] = useState<Categoria[]>([]);
   const [filtro, setFiltro] = useState<string>("Tudo");
   const [loader, setLoader] = useState<boolean>(true);
+
+  const produtosFiltrados = produtos.filter((produto) => {
+    return filtro === "Tudo" || produto.categoria.nome === filtro;
+  });
   // carrega os produtos e categorias ao iniciar o componente
   useEffect(() => {
     async function carregarDados() {
@@ -70,8 +74,11 @@ export default function Home() {
       </div>
       {/* grid de produtos */}
       <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {produtosFiltrados.length === 0 && (
+          <h2 className="text-center text-lg md:text-2xl font-bold">{`Nenhum produto encontrado para a categoria ${filtro.toLowerCase()}`}</h2>
+        )}
         {/* map de produtos */}
-        {produtos
+        {produtosFiltrados
           .filter((produto) => {
             return filtro === "Tudo" || produto.categoria.nome === filtro;
           })
