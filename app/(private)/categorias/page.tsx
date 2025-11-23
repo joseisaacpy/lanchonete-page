@@ -2,6 +2,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import CardCategoria from "@/components/CardCategoria";
 
+export const revalidate = 0;
+
 export default async function Categorias() {
   // faz a requisição para buscar as categorias
   const categorias = await prisma.categoria.findMany();
