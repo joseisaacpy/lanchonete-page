@@ -1,3 +1,6 @@
+import { Home } from "lucide-react";
+import Link from "next/link";
+
 export default function LayoutPrivate({
   children,
 }: {
@@ -5,10 +8,11 @@ export default function LayoutPrivate({
 }) {
   return (
     <section>
-      <header className="p-4">
-        <div className="inline-block bg-green-default text-white text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
-          Conteúdo privado da lanchonete
-        </div>
+      <header className="p-4 flex justify-around">
+        <h1 className="text-2xl font-bold">Painel Privado da Lanchonete</h1>
+        <Link href="/" title="Ir para o cardápio da lanchonete">
+          <Home />
+        </Link>
       </header>
 
       <main className="p-4">{children}</main>
