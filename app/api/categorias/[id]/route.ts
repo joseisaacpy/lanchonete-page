@@ -13,6 +13,11 @@ export async function GET(
         id: Number(id),
       },
     });
+    const quantidadeProdutos = await prisma.produto.count({
+      where: {
+        categoriaId: Number(id),
+      },
+    });
 
     if (!categoria) {
       return NextResponse.json(
@@ -21,7 +26,10 @@ export async function GET(
       );
     }
 
-    return NextResponse.json(categoria);
+    return NextResponse.json({
+      categoria,
+      quantidadeProdutos,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
