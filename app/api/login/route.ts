@@ -9,8 +9,11 @@ export async function POST(req: Request) {
   const adminEmail = process.env.ADMIN_EMAIL;
   const adminHash = process.env.ADMIN_HASH ?? "";
 
+  // logs
   console.log("HASH RAW:", adminHash);
   console.log("SENHA INSERIDA:", senha);
+  console.log("EMAIL INSERIDO:", email);
+  console.log(await bcrypt.compare(senha, adminHash));
 
   //   verifica se o email e senha estão vazios
   if (!email || !senha) {
