@@ -1,8 +1,9 @@
-import { Home, FolderKanban, Package } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { FolderKanban, Plus, Home, LogOut } from "lucide-react";
 import Link from "next/link";
-import { Toaster } from "sonner";
+import { logout } from "@/utils/logout";
 
-export default function LayoutPrivate({
+export default function LayoutCategorias({
   children,
 }: {
   children: React.ReactNode;
@@ -16,15 +17,14 @@ export default function LayoutPrivate({
 
         <nav className="flex gap-4 items-center">
           <Link
-            href="/"
-            title="Ver cardápio público"
+            href="/painel/"
+            title="Painel Principal"
             className="opacity-80 hover:opacity-100 transition"
           >
             <Home />
           </Link>
-
           <Link
-            href="/categorias"
+            href="/painel/categorias"
             title="Gerenciar categorias"
             className="opacity-80 hover:opacity-100 transition"
           >
@@ -32,18 +32,16 @@ export default function LayoutPrivate({
           </Link>
 
           <Link
-            href="/produtos"
-            title="Gerenciar produtos"
+            href="/painel/categorias/nova"
+            title="Adicionar categoria"
             className="opacity-80 hover:opacity-100 transition"
           >
-            <Package />
+            <Plus />
           </Link>
         </nav>
       </header>
 
       <main className="p-4">{children}</main>
-
-      <Toaster />
     </section>
   );
 }
