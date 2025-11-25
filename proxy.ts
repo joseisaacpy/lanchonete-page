@@ -44,7 +44,7 @@ export function proxy(request: NextRequest) {
     publicRoute.whenAuthenticated === "redirect"
   ) {
     const redirectUrl = request.nextUrl.clone(); // clona a url atual
-    redirectUrl.pathname = "/categorias"; // redireciona para a rota de login
+    redirectUrl.pathname = "/painel"; // redireciona para a rota de painel
     return NextResponse.redirect(redirectUrl);
   }
 }
