@@ -10,6 +10,8 @@ export async function POST(req: Request) {
   const adminHash = process.env.ADMIN_HASH ?? "";
 
   // logs
+  console.log("TAMANHO DO HASH:", adminHash.length);
+  console.log("HASH EM BYTES:", Buffer.from(adminHash).toString("hex"));
   console.log("HASH RAW:", adminHash);
   console.log("SENHA INSERIDA:", senha);
   console.log("EMAIL INSERIDO:", email);
