@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import CardCategoria from "@/components/CardCategoria";
 import { Metadata } from "next";
@@ -15,15 +14,9 @@ export default async function Categorias() {
   return (
     <section className="section-container">
       <h1 className="h1-title">Lista de categorias</h1>
-      <p>Quantidade de categorias: {categorias.length}</p>
       <p>
-        Deseja adicionar uma nova categoria?
-        <Link
-          className="ml-1 text-red-default underline"
-          href="/categorias/nova"
-        >
-          Clique aqui
-        </Link>
+        Quantidade de categorias:{" "}
+        <span className="font-bold">{categorias.length}</span>
       </p>
       <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
         {categorias.map((categoria) => {
