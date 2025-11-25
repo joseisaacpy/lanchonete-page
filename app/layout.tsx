@@ -9,10 +9,11 @@ const poppins = Poppins({
 });
 
 // components
+import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 
 // metadata
 import type { Metadata } from "next";
-import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Lanchonete Page",
   description: "Nome da lanchonete — A melhor pizza e hambúrguer da região.",
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <main className="flex-1">{children}</main>
         <Footer />
+        <Toaster position="top-center" />
       </body>
     </html>
   );
