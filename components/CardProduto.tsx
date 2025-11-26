@@ -1,5 +1,5 @@
+"use client";
 import Image from "next/image";
-
 import Produto from "@/types/produto";
 import { toast } from "sonner";
 
@@ -34,7 +34,7 @@ export default function CardProduto({
         <p className="text-gray-300 text-sm md:text-base grow">
           {descricao || "Sem descrição"}
         </p>
-        <p className="text-green-default text-lg md:text-xl font-bold">
+        <p className="text-white text-lg md:text-xl font-bold">
           R${preco.toFixed(2)}
         </p>
         <button
