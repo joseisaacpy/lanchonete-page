@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import Produto from "@/types/produto";
+import { toast } from "sonner";
 
 export default function CardProduto({
   id,
@@ -36,7 +37,13 @@ export default function CardProduto({
         <p className="text-green-default text-lg md:text-xl font-bold">
           R${preco.toFixed(2)}
         </p>
-        <button aria-label={`Comprar ${nome}`} className="btn bg-green-default">
+        <button
+          aria-label={`Comprar ${nome}`}
+          onClick={() => {
+            toast.success(`Você clicou no produto ${nome}`);
+          }}
+          className="btn bg-green-default"
+        >
           Comprar
         </button>
       </div>
