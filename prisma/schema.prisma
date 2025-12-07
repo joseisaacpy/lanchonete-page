@@ -35,3 +35,11 @@ model User {
 
   @@map("usuarios")
 }
+
+model Lanchonete {
+  id           Int      @id @default(1)
+  nome         String
+  imagemFundo  String?
+  imagemLogo   String?
+  utualizadaEm DateTime @updatedAt
+}

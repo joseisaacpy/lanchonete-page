@@ -54,3 +54,8 @@ export type Produto = Prisma.ProdutoModel
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Lanchonete
+ * 
+ */
+export type Lanchonete = Prisma.LanchoneteModel

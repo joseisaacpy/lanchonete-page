@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Categoria: 'Categoria',
   Produto: 'Produto',
-  User: 'User'
+  User: 'User',
+  Lanchonete: 'Lanchonete'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "categoria" | "produto" | "user"
+    modelProps: "categoria" | "produto" | "user" | "lanchonete"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Lanchonete: {
+      payload: Prisma.$LanchonetePayload<ExtArgs>
+      fields: Prisma.LanchoneteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LanchoneteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LanchoneteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>
+        }
+        findFirst: {
+          args: Prisma.LanchoneteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LanchoneteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>
+        }
+        findMany: {
+          args: Prisma.LanchoneteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>[]
+        }
+        create: {
+          args: Prisma.LanchoneteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>
+        }
+        createMany: {
+          args: Prisma.LanchoneteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LanchoneteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>[]
+        }
+        delete: {
+          args: Prisma.LanchoneteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>
+        }
+        update: {
+          args: Prisma.LanchoneteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>
+        }
+        deleteMany: {
+          args: Prisma.LanchoneteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LanchoneteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LanchoneteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>[]
+        }
+        upsert: {
+          args: Prisma.LanchoneteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanchonetePayload>
+        }
+        aggregate: {
+          args: Prisma.LanchoneteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLanchonete>
+        }
+        groupBy: {
+          args: Prisma.LanchoneteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LanchoneteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LanchoneteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LanchoneteCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -695,6 +770,17 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const LanchoneteScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  imagemFundo: 'imagemFundo',
+  imagemLogo: 'imagemLogo',
+  utualizadaEm: 'utualizadaEm'
+} as const
+
+export type LanchoneteScalarFieldEnum = (typeof LanchoneteScalarFieldEnum)[keyof typeof LanchoneteScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -766,6 +852,20 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 /**
@@ -850,6 +950,7 @@ export type GlobalOmitConfig = {
   categoria?: Prisma.CategoriaOmit
   produto?: Prisma.ProdutoOmit
   user?: Prisma.UserOmit
+  lanchonete?: Prisma.LanchoneteOmit
 }
 
 /* Types for Logging */
